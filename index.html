@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pari Couture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+        }
+        .product{
+            min-width: 300px;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+
+
+<header>
+ <header class="fashion-header">
+    <div class="header-box">
+        <img src="images/Screenshot 2025-12-29 203133.png" alt="Pari Couture Logo" class="logo">
+        <div class="brand-text">
+            <h1>Pari Couture</h1>
+            <p>Dress uniquely every day</p>
+        </div>
+    </div>
+</header>
+
+
+</header>
+
+   
+   
+    <style>
+header {
+    text-align: left;
+    padding: 40px 20px;
+   ;
+    color: rgba(20, 20, 20, 0.933);
+    font-family: Arial, sans-serif;
+}
+
+/* 3D Heading */
+header h1 {
+    font-size: 30px;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow:
+        1px 1px 0 #41302f,
+        2px 2px 0 #121212,
+        3px 3px 0 #b8254f,
+        4px 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Subtitle */
+</style>
+</header>
+
+<div class="row" id="product-list" ></div>
+
+<a href="https://wa.me/917690063562?text=Hello%20I%20want%20to%20buy%20a%20kurta"
+   target="_blank"
+   class="whatsapp-btn">💬</a>
+
+<script>
+fetch("products.json")
+  .then(response => response.json())
+  .then(data => {
+    const productList = document.getElementById("product-list");
+
+    data.products.forEach(product => {
+      productList.innerHTML += `
+        <div class="product">
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>₹${product.price}</p>
+          <button onclick="orderWhatsApp('${product.name}', ${product.price})">
+            Buy on WhatsApp
+          </button>
+        </div>
+      `;
+    });
+  });
+
+function orderWhatsApp(product, price) {
+  const phone = "917690063562";
+  const message =
+    `Hello, I want to order:\nProduct: ${product}\nPrice: ₹${price}`;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}
+</script>
+</body>
+</html>
